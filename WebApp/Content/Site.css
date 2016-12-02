@@ -1,14 +1,98 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    height: 100%;
+    padding-bottom: 0px;
 }
+footer {
+    background-color: #03a9f4 !important;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 8%;
+
+}
+.row {
+    margin-right: 0px;
+}
+.head{
+    background-color: #03a9f4 !important;
+}
+
+.head .logo img{
+    margin-left: 46%;
+    margin-top: 7px;
+    width: 36%; 
+}
+.head .slon img{
+    margin-left: 1%;
+    margin-top: 15px;
+    width: 20%;
+}
+.head .textabout p{
+    margin-left: 18%;
+    padding-top: 6px;
+    font-size: 28px;
+    color: white;
+    text-indent: 20px;
+}
+.new .mynews .new {
+    width: 10%;
+}
+footer .indexCats a{
+    color: white;
+    font-size: 139%; 
+    text-decoration: none;
+    padding: 13px 45px 13px 45px;
+}
+footer .indexCats li{
+    display: inline-block;
+    padding: 0 2%;
+    margin-top: 0;
+}
+footer ul{
+    margin-top: 0%;
+}
+.container{
+    max-width: 100%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+.Important {
+    color: red;
+    font-size: 25px;
+    margin-left: 10%;
+}
+.TextNewsHeader {
+     text-indent: 15px;
+    font-size: 20px; 
+}
+.button{
+ text-decoration:none; 
+ text-align:center; 
+ padding:10px 18px; 
+ border:solid 2px #156F98; 
+ -webkit-border-radius:4px;
+ -moz-border-radius:4px; 
+ border-radius: 4px; 
+ font:25px Arial, Helvetica, sans-serif; 
+ font-weight:bold; 
+ color:#E5FFFF; 
+ background-color:#03A9F4; 
+ background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
+ background-image: -webkit-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
+ background-image: -o-linear-gradient(top, #3BA4C7 0%, #1982A5 100%); 
+ background-image: -ms-linear-gradient(top, #3BA4C7 0% ,#1982A5 100%); 
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1982A5', endColorstr='#1982A5',GradientType=0 ); 
+ background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);   
+ -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
+ -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
+ box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
+
+ }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
@@ -17,50 +101,7 @@ textarea {
     max-width: 280px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
 
-/* buttons and links extension to use brackets: [ click me ] */
-.btn-bracketed::before {
-    display:inline-block;
-    content: "[";
-    padding-right: 0.5em;
-}
-.btn-bracketed::after {
-    display:inline-block;
-    content: "]";
-    padding-left: 0.5em;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"]
-{
-    width: 100%;
-}
-
-.editlabel 
-{
-
-
-}
-.editfield 
-{
- margin: 4px 0;
- width: 400px;
-}
-.editfield input[type=text] {
-    max-width: 400px !important;
-    width: 100%;
-}
-
-.editfield textarea {
-    max-width: 600px !important;
-    width: 100%;
-    height: 400px;
-}
 
 .clear {
 	clear:both;
@@ -85,7 +126,7 @@ textarea {
 .created { display: block; color: #555; font-size: 10px;}
 .category { font-style:italic;}
 .editPage img { width: 30px; height: 20px;}
-.indexCats { list-style: none !important; }
+.indexCats { list-style: none !important; margin-left: 10%;margin-top: 21px;-moz-animation-name: ;}
 .indexCatsWrapper { padding-top: 30px;}
 .new { padding: 10px; margin-bottom: 20px; border: 2px solid #e1e1e1; border-radius: 4px;}
 .isTop { border: 2px solid #ff6a00; border-radius: 4px;

@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using WebApp.App_LocalResources;
+@using WebApp.DataServices;
+@using WebApp.Models.ViewModels
+
+@{ var ls = new LocalizationService();}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -11,34 +16,62 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("ЛЕНТА НОВОСТЕЙ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+            <div class="row head">
+                <div class="col-md-4 logo">
+                    <a href="/home/index/@Model.pageCategories"><img class="log" src="~/Content/images/logo.png" /></a>
+                </div>
+                <div class="col-md-4 textabout">
+                    <p>Факультет <br />   информатики</p>
+                </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LangSwitcherPartial")
+
+                <div class="col-md-4 slon">
+                    <img class="slon" src="~/Content/images/aaa.png" />
+                </div>
+
+            </div>
+            <div class="container">
+                @RenderBody()
+            </div>
+
+            <footer>
+                <ul class="indexCats">
+                    @foreach (var pc_item in Model.pageCategories)
+                    {
+                        <li>
+                            <a href="/home/index/@pc_item.ID">
+                                @pc_item.name_ru
+                            </a>
+                        </li>
+
+                    }
+                </ul>
+
+                @*<ul class="indexCats">
+
+
+                @foreach (var pc_item in Model.pageCategories)
+                {
+                    if (i < 5)
+                    {
+                        <li>
+                            <a href="/home/index/@pc_item.ID" class="button">
+                                @pc_item.name
+                            </a>
+                        </li>
+                        i = i + 1;
+                    }
+
+                }
+            </ul>*@
+
+            </footer>
+
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
 </body>
 </html>

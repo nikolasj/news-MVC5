@@ -50,8 +50,10 @@ namespace WebApp.DataServices
 
         public ResultModel SavePage(
             int ID, 
-            string header, 
-            string html, 
+            string header_ru,
+            string header_en,
+            string html_ru,
+            string html_en,
             int category_ID,
             bool isTop)
         {
@@ -62,8 +64,10 @@ namespace WebApp.DataServices
             if (ID != 0)
                 page = context.pages.FirstOrDefault(p => p.ID == ID);
 
-            page.header = header;
-            page.html = html;
+            page.header_ru = header_ru;
+            page.header_en = header_en;
+            page.html_ru = html_ru;
+            page.html_en = html_en;
             page.pagCategory_ID = category_ID;
             page.isTop = isTop;
             page.created = DateTime.Now;

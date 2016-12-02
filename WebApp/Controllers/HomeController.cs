@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -20,18 +21,20 @@ namespace WebApp.Controllers
             {
             }
 
+        public ActionResult ChangeCulture(string lang, string returnUrl)
+        {
+
+
+            Session["_Culture"] = new CultureInfo(lang);
+
+            return Redirect(returnUrl);
+        }
+
+
             // список страниц
             public ActionResult Index(int? id)
             {
-                #region debug core
-
-                string conn = ConfigurationManager.AppSettings["conn"];
-                ContentResult cr = new ContentResult();
-                cr.Content = conn;
-                //return cr;
-
-                #endregion
-
+                
                 PageServices pageServices = new PageServices();
                 Models.ViewModels.IndexViewModel VM = new Models.ViewModels.IndexViewModel();
                 VM.selectedCat_ID = id;
@@ -102,8 +105,10 @@ namespace WebApp.Controllers
 
 
                     ResultModel rm = pageServices.SavePage(page_ID,
-                        formValues["header"],
-                        formValues["html"],
+                        formValues["header_ru"],
+                        formValues["header_en"],
+                        formValues["html_ru"],
+                        formValues["html_en"],
                         category_ID, isTop);
 
                     result = rm.message;

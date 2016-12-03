@@ -1,7 +1,10 @@
 ﻿@using WebApp.Models
+@using WebApp.DataServices;
+
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    var ls = new LocalizationService();
+    ViewBag.Title = ls.Get("Login"); //GlobalRes.Login;
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -11,7 +14,7 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
+                <h4>@ls.Get("UseLocalAccountToLogIn")</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -22,7 +25,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <label class="col-md-2 control-label" for="Email">@GlobalRes.Password</label>
+                    
                     <div class="col-md-10">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -32,17 +36,17 @@
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                            @ls.Get("RememberMe")
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <input type="submit" value="@ls.Get("Login")" class="btn btn-default" />
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    @Html.ActionLink(@ls.Get("RegisterAsNew"), "Register")
                 </p>
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
@@ -53,7 +57,7 @@
     </div>
     <div class="col-md-4">
         <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            @*@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
         </section>
     </div>
 </div>

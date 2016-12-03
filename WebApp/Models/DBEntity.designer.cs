@@ -30,6 +30,9 @@ namespace WebApp.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void Insertlocalization(localization instance);
+    partial void Updatelocalization(localization instance);
+    partial void Deletelocalization(localization instance);
     partial void InsertpageCategory(pageCategory instance);
     partial void UpdatepageCategory(pageCategory instance);
     partial void DeletepageCategory(pageCategory instance);
@@ -68,6 +71,14 @@ namespace WebApp.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<localization> localizations
+		{
+			get
+			{
+				return this.GetTable<localization>();
+			}
+		}
+		
 		public System.Data.Linq.Table<pageCategory> pageCategories
 		{
 			get
@@ -85,6 +96,140 @@ namespace WebApp.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.localizations")]
+	public partial class localization : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _key;
+		
+		private string _en;
+		
+		private string _ru;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnkeyChanging(string value);
+    partial void OnkeyChanged();
+    partial void OnenChanging(string value);
+    partial void OnenChanged();
+    partial void OnruChanging(string value);
+    partial void OnruChanged();
+    #endregion
+		
+		public localization()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[key]", Storage="_key", DbType="NVarChar(450) NOT NULL", CanBeNull=false)]
+		public string key
+		{
+			get
+			{
+				return this._key;
+			}
+			set
+			{
+				if ((this._key != value))
+				{
+					this.OnkeyChanging(value);
+					this.SendPropertyChanging();
+					this._key = value;
+					this.SendPropertyChanged("key");
+					this.OnkeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_en", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string en
+		{
+			get
+			{
+				return this._en;
+			}
+			set
+			{
+				if ((this._en != value))
+				{
+					this.OnenChanging(value);
+					this.SendPropertyChanging();
+					this._en = value;
+					this.SendPropertyChanged("en");
+					this.OnenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ru", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string ru
+		{
+			get
+			{
+				return this._ru;
+			}
+			set
+			{
+				if ((this._ru != value))
+				{
+					this.OnruChanging(value);
+					this.SendPropertyChanging();
+					this._ru = value;
+					this.SendPropertyChanged("ru");
+					this.OnruChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.pageCategories")]
 	public partial class pageCategory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -93,7 +238,9 @@ namespace WebApp.Models
 		
 		private int _ID;
 		
-		private string _name;
+		private string _name_ru;
+		
+		private string _name_en;
 		
 		private EntitySet<page> _pages;
 		
@@ -103,8 +250,10 @@ namespace WebApp.Models
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
+    partial void Onname_ruChanging(string value);
+    partial void Onname_ruChanged();
+    partial void Onname_enChanging(string value);
+    partial void Onname_enChanged();
     #endregion
 		
 		public pageCategory()
@@ -133,22 +282,42 @@ namespace WebApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(400) NOT NULL", CanBeNull=false)]
-		public string name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_ru", DbType="NVarChar(400) NOT NULL", CanBeNull=false)]
+		public string name_ru
 		{
 			get
 			{
-				return this._name;
+				return this._name_ru;
 			}
 			set
 			{
-				if ((this._name != value))
+				if ((this._name_ru != value))
 				{
-					this.OnnameChanging(value);
+					this.Onname_ruChanging(value);
 					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
+					this._name_ru = value;
+					this.SendPropertyChanged("name_ru");
+					this.Onname_ruChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_en", DbType="NVarChar(400) NOT NULL", CanBeNull=false)]
+		public string name_en
+		{
+			get
+			{
+				return this._name_en;
+			}
+			set
+			{
+				if ((this._name_en != value))
+				{
+					this.Onname_enChanging(value);
+					this.SendPropertyChanging();
+					this._name_en = value;
+					this.SendPropertyChanged("name_en");
+					this.Onname_enChanged();
 				}
 			}
 		}
@@ -209,15 +378,19 @@ namespace WebApp.Models
 		
 		private int _pagCategory_ID;
 		
-		private string _header;
+		private string _header_ru;
 		
-		private string _html;
+		private string _html_ru;
 		
 		private System.DateTime _created;
 		
 		private string _image;
 		
 		private bool _isTop;
+		
+		private string _header_en;
+		
+		private string _html_en;
 		
 		private EntityRef<pageCategory> _pageCategory;
 		
@@ -229,16 +402,20 @@ namespace WebApp.Models
     partial void OnIDChanged();
     partial void OnpagCategory_IDChanging(int value);
     partial void OnpagCategory_IDChanged();
-    partial void OnheaderChanging(string value);
-    partial void OnheaderChanged();
-    partial void OnhtmlChanging(string value);
-    partial void OnhtmlChanged();
+    partial void Onheader_ruChanging(string value);
+    partial void Onheader_ruChanged();
+    partial void Onhtml_ruChanging(string value);
+    partial void Onhtml_ruChanged();
     partial void OncreatedChanging(System.DateTime value);
     partial void OncreatedChanged();
     partial void OnimageChanging(string value);
     partial void OnimageChanged();
     partial void OnisTopChanging(bool value);
     partial void OnisTopChanged();
+    partial void Onheader_enChanging(string value);
+    partial void Onheader_enChanged();
+    partial void Onhtml_enChanging(string value);
+    partial void Onhtml_enChanged();
     #endregion
 		
 		public page()
@@ -291,42 +468,42 @@ namespace WebApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_header", DbType="NVarChar(400) NOT NULL", CanBeNull=false)]
-		public string header
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_header_ru", DbType="NVarChar(400) NOT NULL", CanBeNull=false)]
+		public string header_ru
 		{
 			get
 			{
-				return this._header;
+				return this._header_ru;
 			}
 			set
 			{
-				if ((this._header != value))
+				if ((this._header_ru != value))
 				{
-					this.OnheaderChanging(value);
+					this.Onheader_ruChanging(value);
 					this.SendPropertyChanging();
-					this._header = value;
-					this.SendPropertyChanged("header");
-					this.OnheaderChanged();
+					this._header_ru = value;
+					this.SendPropertyChanged("header_ru");
+					this.Onheader_ruChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_html", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string html
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_html_ru", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string html_ru
 		{
 			get
 			{
-				return this._html;
+				return this._html_ru;
 			}
 			set
 			{
-				if ((this._html != value))
+				if ((this._html_ru != value))
 				{
-					this.OnhtmlChanging(value);
+					this.Onhtml_ruChanging(value);
 					this.SendPropertyChanging();
-					this._html = value;
-					this.SendPropertyChanged("html");
-					this.OnhtmlChanged();
+					this._html_ru = value;
+					this.SendPropertyChanged("html_ru");
+					this.Onhtml_ruChanged();
 				}
 			}
 		}
@@ -387,6 +564,46 @@ namespace WebApp.Models
 					this._isTop = value;
 					this.SendPropertyChanged("isTop");
 					this.OnisTopChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_header_en", DbType="NVarChar(400)")]
+		public string header_en
+		{
+			get
+			{
+				return this._header_en;
+			}
+			set
+			{
+				if ((this._header_en != value))
+				{
+					this.Onheader_enChanging(value);
+					this.SendPropertyChanging();
+					this._header_en = value;
+					this.SendPropertyChanged("header_en");
+					this.Onheader_enChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_html_en", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string html_en
+		{
+			get
+			{
+				return this._html_en;
+			}
+			set
+			{
+				if ((this._html_en != value))
+				{
+					this.Onhtml_enChanging(value);
+					this.SendPropertyChanging();
+					this._html_en = value;
+					this.SendPropertyChanged("html_en");
+					this.Onhtml_enChanged();
 				}
 			}
 		}

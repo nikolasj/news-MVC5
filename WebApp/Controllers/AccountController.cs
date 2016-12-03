@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApp.Models;
+using WebApp.App_LocalResources;
 
 namespace WebApp.Controllers
 {
@@ -86,7 +87,7 @@ namespace WebApp.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", GlobalRes.InvalidLoginAttempt); // "Invalid login attempt."
                     return View(model);
             }
         }
